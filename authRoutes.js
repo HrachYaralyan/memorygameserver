@@ -10,7 +10,7 @@ router.post("/registration",[
     check("password", "Password can't be less 4  and more than 10 symbols").isLength({min:4 , max:10})
 ], controller.registration)
 router.post("/login", controller.login)
-router.get("/users",roleMiddleware(["ADMIN"]),  controller.getUsers)
+router.get("/users",  controller.getUsers)
 router.put("/update/:id",  controller.update)
 
 
