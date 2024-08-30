@@ -13,6 +13,11 @@ const generateAccsesToken = (id , roles)=>{
     return jwt.sign(payload,secret, {expiresIn:"24h"} )
 }
 
+const generateRefreshToken = (id) => {
+    const payload = { id }
+    return jwt.sign(payload, secret, { expiresIn: "7d" })
+}
+
 class authConroller{
     async registration(req , res){
         try {
@@ -48,14 +53,17 @@ class authConroller{
             if(!validPassword){
                 res.status(400).json({message:` This password is Invalid `})
             }
-            const token = generateAccsesToken(user._id , user.roles)
+            const accessToken = generateAccsesToken(user._id , user.roles)
+            const refreshToken = generateRefreshToken(user._id)
+
             console.log(user,"<-----user")
             let userInformation = {
                 username:user.username,
                 level:user.level,
                 count:user.count,
                 id:user._id,
-                token:token
+                accessToken:accessToken,
+                refreshToken: refreshToken
             }
             return res.json(userInformation)
 
