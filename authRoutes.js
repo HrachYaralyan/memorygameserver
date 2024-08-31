@@ -12,6 +12,8 @@ router.post("/registration",[
 router.post("/login", controller.login)
 router.get("/users",  controller.getUsers)
 router.put("/update/:id",  controller.update)
+router.post("/refresh",  controller.refreshTokens)
+
 
 
 module.exports = router
