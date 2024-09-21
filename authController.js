@@ -63,7 +63,8 @@ class authConroller{
                 count:user.count,
                 id:user._id,
                 accessToken:accessToken,
-                refreshToken: refreshToken
+                refreshToken: refreshToken,
+                worlds:user.worlds
             }
             return res.json(userInformation)
 
